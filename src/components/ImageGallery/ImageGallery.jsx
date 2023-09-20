@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ImageGallery.css';
 
-// export default ImageGallery;
-
 class ImageGallery extends Component {
   render() {
     const dataToInsert = this.props.imagesToView.map(item => {
