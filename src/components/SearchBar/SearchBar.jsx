@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledForm, StyledHeader, StyledInput } from './SearchBar.Styled';
 import Button from 'components/Button/Button';
 import PropTypes from 'prop-types';
 
-class SearchBar extends React.Component {
-  state = {
-    currentQuery: '',
+const SearchBar = ({setQuery}) => {
+
+  const [currentQuery, setCurrentQuery] = useState("")
+
+  const handleInputChange = e => {
+    switch (e.target.name) {
+      case "currentQuery":
+        setCurrentQuery(e.target.value.trim())
+        break;
+
+      default:
+        break;
+    }
+    // this.setState({ [e.target.name]: e.target.value.trim() });
   };
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value.trim() });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.setQuery(this.state.currentQuery);
+    setQuery(currentQuery);
 
-    this.setState({ currentQuery: '' });
+    setCurrentQuery("")
   };
 
-  render() {
     return (
       <>
         <StyledHeader className="search-bar">
-          <StyledForm className="form" onSubmit={this.handleSubmit}>
+          <StyledForm className="form" onSubmit={handleSubmit}>
             <Button />
             <StyledInput
               className="input"
@@ -32,29 +38,29 @@ class SearchBar extends React.Component {
               autoFocus
               name="currentQuery"
               placeholder="Search images and photos"
-              onChange={this.handleInputChange}
-              value={this.state.currentQuery}
+              onChange={handleInputChange}
+              value={currentQuery}
             />
           </StyledForm>
         </StyledHeader>
       </>
     );
-  }
+
 }
 
 SearchBar.propTypes = {
   setQuery: PropTypes.func,
-  getImages: PropTypes.func,
-  data: PropTypes.shape({
-      currentImg: PropTypes.string,
-      isOpen: PropTypes.bool,
-      items: PropTypes.array,
-      loading: PropTypes.bool,
-      page: PropTypes.number,
-      per_page: PropTypes.number,
-      q:PropTypes.string,
-      totalHits:PropTypes.number,
-    }),
+  // getImages: PropTypes.func,
+  // data: PropTypes.shape({
+  //     currentImg: PropTypes.string,
+  //     isOpen: PropTypes.bool,
+  //     items: PropTypes.array,
+  //     loading: PropTypes.bool,
+  //     page: PropTypes.number,
+  //     per_page: PropTypes.number,
+  //     q:PropTypes.string,
+  //     totalHits:PropTypes.number,
+  //   }),
 };
 
 export default SearchBar;
