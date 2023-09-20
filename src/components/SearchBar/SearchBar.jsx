@@ -16,7 +16,6 @@ const SearchBar = ({setQuery}) => {
       default:
         break;
     }
-    // this.setState({ [e.target.name]: e.target.value.trim() });
   };
 
   const handleSubmit = e => {
