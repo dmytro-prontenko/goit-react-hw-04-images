@@ -30,7 +30,9 @@ const App = () => {
   };
 
   const handleModalOpen = (id, img) => {
-    setIsOpen(prev => !prev.isOpen);
+    setIsOpen(!isOpen);
+    setCurrentImg(img)
+    setCurrentImgId(id)
   };
 
   useEffect(() => {
@@ -92,7 +94,7 @@ const App = () => {
       ) : null}
       {isOpen && (
         <Modal onCloseModal={handleModalOpen}>
-          <img src={currentImg} alt="" />
+          <img src={currentImg} alt={currentImgId} />
         </Modal>
       )}
     </>
@@ -100,3 +102,4 @@ const App = () => {
 };
 
 export default App;
+
