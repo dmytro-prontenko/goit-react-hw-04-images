@@ -6,7 +6,7 @@ import { getData } from 'services/imgAPI';
 import { toast } from 'react-toastify';
 import { StyledLoadMore } from './LoadMoreButton/LoadMoreButton.Styled';
 import 'react-toastify/dist/ReactToastify.css';
-import { Modal } from './Modal/Modal';
+import Modal from './Modal/Modal';
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -31,8 +31,8 @@ const App = () => {
 
   const handleModalOpen = (id, img) => {
     setIsOpen(!isOpen);
-    setCurrentImg(img)
-    setCurrentImgId(id)
+    setCurrentImg(img);
+    setCurrentImgId(id);
   };
 
   useEffect(() => {

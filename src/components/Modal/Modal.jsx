@@ -1,27 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from 'styled-components';
 
-export const Modal = ({ children, onCloseModal }) => {
+const Modal = ({ children, onCloseModal }) => {
   const onBackDropClick = e => {
-		if (e.currentTarget === e.target) {
-			onCloseModal()
-      cleanup()
-		}
-	}
+    if (e.currentTarget === e.target) {
+      onCloseModal();
+      cleanup();
+    }
+  };
 
   const onEscKeyPress = e => {
     if (e.key === 'Escape') {
       onCloseModal();
-      cleanup()
+      cleanup();
     }
-  }
+  };
 
   document.addEventListener('keydown', onEscKeyPress);
 
-
   const cleanup = () => {
     document.removeEventListener('keydown', onEscKeyPress);
-  }
+  };
 
   return (
     <Wrapper onClick={onBackDropClick}>
@@ -32,6 +32,12 @@ export const Modal = ({ children, onCloseModal }) => {
     </Wrapper>
   );
 };
+Modal.propTypes = {
+  children: PropTypes.node,
+  onCloseModal: PropTypes.func,
+};
+
+export default Modal;
 
 export const Wrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
